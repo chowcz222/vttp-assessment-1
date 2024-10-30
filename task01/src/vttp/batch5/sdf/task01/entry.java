@@ -74,7 +74,6 @@ public class entry {
 	}
 
     public static String toWeather(int weather) {
-		//season (1:spring, 2:summer, 3:fall, 4:winter)
 		switch (weather) {
 			case 1: return "Clear, Few clouds, Partly cloudy, Partly cloudy";
 			case 2: return "Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist";
@@ -86,7 +85,6 @@ public class entry {
     }
 
     public static String toHoliday(int holiday) {
-		//season (1:spring, 2:summer, 3:fall, 4:winter)
 		switch (holiday) {
 			case 0: return "a holiday";
 			case 1: return "not a holiday";

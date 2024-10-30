@@ -29,6 +29,8 @@ public class Main {
 			i++;
 		}
 
+		br.close();
+
 		System.out.println("Board:\n");
 		for (int a = 0; a < 3; a++){
 			for (int b = 0; b < 3; b++) {
@@ -39,6 +41,7 @@ public class Main {
 
 		System.out.println("\n-----------------------\n");
 
+		int minUtility = 0;
 		for (int a = 0; a < 3; a++){
 			for (int b = 0; b < 3; b++) {
 				if(board[a][b].equals(".")){
@@ -51,17 +54,23 @@ public class Main {
 									board[c][d] = "O";
 									utility = checkWin(board);
 									board[c][d] = ".";
-									if(utility == -1) {break;}
+									if(utility == -1) { minUtility = -1;}
 								}
 							}
-							if(utility == -1) {break;}
 						}
 
-					} 
+					}
+					if ( minUtility != -1) {
+						board[a][b] = ".";
+						int xCoord = a;
+						int yCoord = b;
+						System.out.printf("y=%d,  x=%d,  utility=%d\n", xCoord, yCoord, utility);
+					} else {
 					board[a][b] = ".";
 					int xCoord = a;
 					int yCoord = b;
-					System.out.printf("y=%d,  x=%d,  utility=%d\n", xCoord, yCoord, utility);
+					System.out.printf("y=%d,  x=%d,  utility=%d\n", xCoord, yCoord, minUtility);
+					}
 				}
 				
 			}
@@ -98,7 +107,7 @@ public class Main {
 			for (int j = 0; j < 3; j++) {
 				if( board[j][i].equals("X")){
 					xCount += 1;
-				} else if ( board[i][j].equals("O")) {
+				} else if ( board[j][i].equals("O")) {
 					oCount += 1;
 				}
 			}
@@ -128,19 +137,12 @@ public class Main {
 		xCount = 0;
 		oCount = 0;
 
-		for (int i = (3-1); i > -1; i-- ){
-			if( board[i][i].equals("X")){
-				xCount += 1;
-			} else if ( board[i][i].equals("O")) {
-				oCount += 1;
-			}
-			if(xCount == 3){
-				return 1;
-			} else if (oCount == 3){
-				return -1;
-			}
+		
+		if( board[0][2].equals("X") && board[1][1].equals("X") && board[2][0].equals("X")){
+			return 1;
+		} else if ( board[0][2].equals("O") && board[1][1].equals("O") && board[2][0].equals("O")) {
+			return -1;
 		}
-
 
 		return 0;
 

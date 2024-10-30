@@ -30,13 +30,13 @@ public class Main {
 			line = br.readLine();
 			if (null == line){ break;}
 			String[] newUtility= line.split(",");
-			totalBikers = Integer.parseInt(newUtility[8]+ newUtility[9]);
+			totalBikers = Integer.parseInt(newUtility[8])+ Integer.parseInt(newUtility[9]);
 			for(int i = 0; i < positionList.length; i++) {
 				int a = i-1;
 				int j = positionList.length;
 				if(totalBikers > positionList[i]) {
 					while(j > a){
-						if(j < (positionList.length -1)){
+						if(j < (positionList.length - 1)){
 							positionList[j+1] = positionList[j];
 						}
 						j--;
@@ -46,7 +46,7 @@ public class Main {
 					entry BikeEntry = new entry(position, Integer.parseInt(newUtility[0]), Integer.parseInt(newUtility[3]), Integer.parseInt(newUtility[1]), totalBikers, Integer.parseInt(newUtility[4]), Integer.parseInt(newUtility[2]));
 					bikeList[i] = BikeEntry;
 					break;
-						
+					
 				}
 			}
 
