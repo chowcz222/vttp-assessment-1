@@ -2,8 +2,6 @@ package vttp.batch5.sdf.task01;
 
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 // Use this class as the entry point of your program
 
@@ -11,9 +9,8 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 
-		// File file = new File("C:\Users\bleac\VISA\assessment1\task01\day.csv");
-		Path p = Paths.get("C:\\Users\\bleac\\VISA\\assessment1\\task01\\day.csv");
-		Reader reader = new FileReader(p.toFile());
+		File file = new File("day.csv");
+		Reader reader = new FileReader(file);
 		BufferedReader br = new BufferedReader(reader);
 
 		int[] positionList = new int[5];
@@ -25,19 +22,21 @@ public class Main {
 
 		String line = "x";
 		String header = br.readLine();
+
 		while(line != null) {
 			int totalBikers = 0;
 			line = br.readLine();
 			if (null == line){ break;}
 			String[] newUtility= line.split(",");
-			totalBikers = Integer.parseInt(newUtility[8])+ Integer.parseInt(newUtility[9]);
+			totalBikers = Integer.parseInt(newUtility[8]) + Integer.parseInt(newUtility[9]);
 			for(int i = 0; i < positionList.length; i++) {
 				int a = i-1;
 				int j = positionList.length;
-				if(totalBikers > positionList[i]) {
+				if(totalBikers >= positionList[i]) {
 					while(j > a){
 						if(j < (positionList.length - 1)){
 							positionList[j+1] = positionList[j];
+							bikeList[j+1] = bikeList[j];
 						}
 						j--;
 					}

@@ -1,20 +1,24 @@
 package vttp.batch5.sdf.task02;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+// import java.nio.file.Path;
+// import java.nio.file.Paths;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		Path p = Paths.get("C:\\Users\\bleac\\VISA\\assessment1\\task02\\TTT\\board0.txt");
-		Reader reader = new FileReader(p.toFile());
+
+		File file = new File(args[0]);
+		Reader reader = new FileReader(file);
+		// Path p = Paths.get("C:\\Users\\bleac\\VISA\\assessment1\\task02\\TTT\\board0.txt");
+		// Reader reader = new FileReader(p.toFile());
 		BufferedReader br = new BufferedReader(reader);
 
-		System.out.println("Processing: TTT/board0.txt\n\n");
+		System.out.printf("Processing: %s", args[0]);
 
 		String line = "x";
 		int i = 0;
